@@ -1,5 +1,10 @@
 theme: jekyll-theme-cayman
-title: Notes on Modern Operating Systems, 4th Edition
 include: _resources
 kramdown:
   math_engine: katex
+defaults:
+  -
+    scope:
+      path: "mos-notes"
+    values:
+      title: Notes on Modern Operating Systems, 4th Edition
