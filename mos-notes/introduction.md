@@ -5,7 +5,7 @@
 	- If the interface is text-based, it can be called a shell; if it has icons it can be called a GUI (**G**raphical **U**ser **I**nterface).
 - A high-level illustration of a computer is shown below:
 
-![db28d3af116cb822e0f159e351768ef1.png](../_resources/db28d3af116cb822e0f159e351768ef1-1.png)
+![db28d3af116cb822e0f159e351768ef1.png](../_resources/db28d3af116cb822e0f159e351768ef1.png)
 
 - The hardware consists of chips, boards, disks, keyboards, monitors, often mice, and other physical objects.
 - Layered atop the hardware we see the operating system.
