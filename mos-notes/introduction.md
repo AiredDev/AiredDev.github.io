@@ -1,9 +1,11 @@
+# Chapter 1.0: Introduction
+
 - An operating system is a layer of software responsible for providing user programs with a simpler, cleaner model of the computer and to handle management of resources.
 - The program that a user interacts with is not typically part of the operating system, although it uses the OS to get its work done.
 	- If the interface is text-based, it can be called a shell; if it has icons it can be called a GUI (**G**raphical **U**ser **I**nterface).
 - A high-level illustration of a computer is shown below:
 
-![db28d3af116cb822e0f159e351768ef1.png](../_resources/db28d3af116cb822e0f159e351768ef1.png)
+![db28d3af116cb822e0f159e351768ef1.png](../_resources/db28d3af116cb822e0f159e351768ef1-1.png)
 
 - The hardware consists of chips, boards, disks, keyboards, monitors, often mice, and other physical objects.
 - Layered atop the hardware we see the operating system.
@@ -16,4 +18,4 @@
 - Sometimes, the distinction between the OS and userspace programs can blur, for example on embedded systems that may not have kernel mode.
 - Operating systems also differ from userspace in other ways. They are huge, complex, and long-lived software systems, with the kernel often approaching 5 million lines of code or more. When libraries are included, that number can inflate to 70 million. Because of the pure scope of these programs, OSes usually evolve over time rather than being fully replaced. Windows versions NT, 2000, XP, Vista, 7, 8 and 10 are all, essentially, a single operating system.
 
-# Chapter 1.1: What is an Operating System?
+## Chapter 1.1: What is an Operating System?
