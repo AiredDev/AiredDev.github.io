@@ -1,4 +1,4 @@
-theme: jekyll-theme-slate
+theme: jekyll-theme-cayman
 title: Notes on Modern Operating Systems, 4th Edition
 include: _resources
 kramdown:
