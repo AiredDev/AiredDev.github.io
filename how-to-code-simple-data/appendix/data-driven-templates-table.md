@@ -1,0 +1,12 @@
+To use the following table:
+Start with the data type of the information you've chosen to represent in the program. Select the row that matches that type.
+
+| Type of data | cond question (if applicable) | Body or cond answer (if applicable) |
+|:--------------:|:-------------------------------:|:-------------------------------------:|
+| **Atomic non-distinct**<br /><br />`Number`<br /><br />`String`<br /><br />`Boolean`<br /><br />`Image`<br /><br />`Interval`<br /><br />etc. | **Appropriate predicte**<br /><br />`(number? x)`<br /><br />`(string? x)`<br /><br />`(boolean? x)`<br /><br />`(image? x)`<br /><br />`(and (<= 0 x) (< x 10))`<br />etc. | `(... x)` |
+| **Atomic Distinct**<br /><br />`"red"`<br /><br />`#false`<br /><br />`empty`<br /><br />etc. | **Appropriate predicate**<br /><br />`(string=? x "red"`<br />`(false? x)`<br /><br />`(empty? x)`<br /><br />etc. | `(...)`
+| **One of**<br /><br />Enumerations<br /><br />Itemizations | | cond with one class per subclass of one-of, where each question and answer expression is formed by following the rule in the question or answer column of this table for the corresponding case.<br /><br />You can use else for itemizations and large enumerations, but they should not be used for regular enumerations. |
+| **Compound**<br /><br />`Position`<br /><br />`Firework`<br /><br />`	Ball`<br /><br />cons<br /><br />etc. | **Predicate from structure**<br /><br />`(posn? x)`<br /><br />`(firework? x)`<br />`(ball? x)`<br /><br />`(cons? x)` (often `else`)<br />etc. | **All selectors**<br /><br />`(... (posn-x x) (posn-y x))`<br />`(... (firework-y x) (firework-color x))`<br />`(... (ball-x x) (ball-dx x))`<br />`(... (first x) (rest x))`<br />etc.<br />Then consider the result type of each selector call and wrap the accessor expression using the table with that type. |
+| **Other non-primitive type reference**<br /><br /><br /><br /><br /><br /><br /> | **Predicate, usually from structure definition**<br /><br />`(firework? x)`<br /><br />`(person? x)` | **Call to other type's template function**<br /><br /><br />`(fn-for-firework x)`<br /><br />`(fn-for-person x)` |
+| **Self reference**<br /><br /><br /><br /><br /><br /> | | **Form natural recursion with a call to this type's template function**<br /><br />`(fn-for-los (rest los))` |
+| **Mutual reference**<br /><br /><br /><br /><br /><br /><br /> | | **Call to other type's template function**<br /><br />`(fn-for-lod (dir-subdirs d))`<br /><br />`(fn-for-dir (first lod))` |
