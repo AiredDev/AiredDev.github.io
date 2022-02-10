@@ -14,15 +14,15 @@ For example, in a program, we may want to represent two separate pieces of infor
 
 The first step of the data definition recipe is to identify the structure of the information.
 
-| Structure                      |Definition type|
-|:------------------------------:|:-------------:|
-| Atomic                         | Atomic        |
-| Numbers within a certain range | Interval      |
-| Fixed number of distinct items | Enumeration   |
-| Two or more subclasses, at least one of which is **not** a distinct item | Itemization |
-| Two or more items that naturally belong together | Compound data |
-| Naturally composed of different parts | Reference to other defined type|
-| Of arbitrary or unknown size  | Self-referential or mutually referential |
+| Structure                                                                | Definition type                          |
+|:------------------------------------------------------------------------:|:----------------------------------------:|
+| Atomic                                                                   | Atomic                                   |
+| Numbers within a certain range                                           | Interval                                 |
+| Fixed number of distinct items                                           | Enumeration                              |
+| Two or more subclasses, at least one of which is **not** a distinct item | Itemization                              |
+| Two or more items that naturally belong together                         | Compound data                            |
+| Naturally composed of different parts                                    | Reference to other defined type          |
+| Of arbitrary or unknown size                                             | Self-referential or mutually referential |
 
 Now that we know the structure of our data, we can begin the recipe proper.
 1. If the data is compound, naturally composed of different parts, or of arbitrary or unknown size, create a **structure definition**.
@@ -64,6 +64,3 @@ Example (atomic data):
 ;; Template rules used:
 ;;  - atomic non-distinct: Natural
 ```
-
-Example ()
-

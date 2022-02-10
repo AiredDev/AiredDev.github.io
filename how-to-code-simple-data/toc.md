@@ -4,3 +4,5 @@
 2. Recipes
 	* [2.1 How to Design Functions](recipes/how-to-design-functions.html)
 	* [2.2 How to Design Data](recipes/how-to-design-data.html)
+3. Appendices
+	* [Appendix A. Table of Data-Driven Templates](appendices/data-driven-templates-table.md)
