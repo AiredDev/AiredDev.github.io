@@ -1,10 +1,16 @@
-remote-theme: AiredDev/moonwalk
-include: _resources
-kramdown:
-  math_engine: katex
-defaults:
-  -
-    scope:
-      path: "mos-notes"
-    values:
-      title: Notes on Modern Operating Systems, 4th Edition
+remote_theme: abhinavs/moonwalk
+title: AiredDev's Notes
+url: https://AiredDev.github.io
+description: Notes on courses I've taken and books I've read.
+
+theme_config:
+  appearance: "dark"
+  appearance_toggle: true
+  date_format: "%d/%m/%y"
+  show_navbar: true
+  show_footer: true
+  show_copyright: false
+  show_projects: false
+  show_blog: true
+  show_old_projects: false
+  show_misc_list: true
