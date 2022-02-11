@@ -1,4 +1,4 @@
-remote-theme: abhinavs/moonwalk
+remote-theme: AiredDev/moonwalk
 include: _resources
 kramdown:
   math_engine: katex
