@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+remote-theme: abhinavs/moonwalk
 include: _resources
 kramdown:
   math_engine: katex
