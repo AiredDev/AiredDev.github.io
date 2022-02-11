@@ -3,6 +3,8 @@ title: AiredDev's Notes
 url: https://AiredDev.github.io
 description: Notes on courses I've taken and books I've read.
 
+include: _resources
+
 theme_config:
   appearance: "dark"
   appearance_toggle: true
