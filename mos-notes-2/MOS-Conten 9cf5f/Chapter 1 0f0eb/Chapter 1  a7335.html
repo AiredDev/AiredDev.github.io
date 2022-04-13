@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Chapter 1.3: Computer Hardware Review</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a7335e58-6b18-4534-b827-b6819be62ba9" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_1.jpg" style="object-position:center 62.99%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔌</span></div><h1 class="page-title">Chapter 1.3: Computer Hardware Review</h1></header><div class="page-body"><p id="06bd05e8-65c0-4d88-9572-f49a08a2db23" class="">A simple PC can be conceptually abstracted into the following diagram:</p><figure id="d52a1ab3-5122-4c48-ac61-a8c42cd3881f" class="image"><a href="Chapter%201%20%20a7335/Untitled.png"><img style="width:530px" src="Chapter%201%20%20a7335/Untitled.png"/></a></figure><p id="b39da601-6c9d-4876-b2d0-c1e25d928d0a" class="">The CPU, memory and I/O devices are all connected by a system bus and communicate with one another over it.</p><p id="80def4f4-0010-47b5-989c-11aedefc54a8" class="">Modern devices are more complex, with multiple buses; we will look at this later.</p><h2 id="fb08fa64-f470-46f8-ba9e-d19021a5908f" class="">Processors</h2><p id="d591abe1-8095-4d20-b2cc-10926e92fd72" class="">The CPU is the “brain” of the computer. It fetches instructions from memory and executes them.</p><p id="2c3b1e8c-2c93-4e1e-bd97-51076995f2bd" class="">The basic cycle of every CPU is to <mark class="highlight-red"><strong>fetch</strong></mark> the next instruction from memory, <mark class="highlight-red"><strong>decode</strong></mark> it (determining type and operands) and then <mark class="highlight-red"><strong>execute </strong></mark>it. The cycle is repeated until the program finishes.</p><p id="f74becda-1902-40a6-80e8-9e4482366268" class="">Each CPU has a certain set of instructions that it can execute. Therefore an ARM processor cannot run an x86 program, nor can an x86 program run an ARM one.</p><p id="84bac7fa-c28e-44eb-a850-c3c750257375" class="">Because accessing memory to get an instruction or data takes much longer than to execute, every CPU has a small set of <mark class="highlight-red"><strong>registers </strong></mark>that can hold key variables and temporary results. The instruction set of each processor generally contains instruction to load a word into a register from memory, and to store a word into memory from a register. Other instructions may combine two operands from registers, memory or both into a result, for example adding or subtracting two words and storing the result into another register.</p><p id="4d78cacb-a058-400b-8ad0-be53a161b2e1" class="">In addition to these general registers for temporary values, most processors have several special-purpose registers that are visible to the programmer. One of these registers is the <mark class="highlight-red"><strong>program counter</strong></mark>, which contains the memory address of the next instruction to be executed. Another special register is the <mark class="highlight-red"><strong>stack pointer</strong></mark> which points to the top of a stack currently in memory. The stack contains one <mark class="highlight-red"><strong>frame </strong></mark>for each procedure that has been entered but not yet exited. The stack frame contains those input parameters, local variables and temporary variables that are not stored in registers. A third special-purpose register is the <mark class="highlight-red"><strong>PSW (program status word)</strong></mark>. This contains special bits which are set by the computer. The PSW can contain condition code bits from comparisons, the CPU priority, the mode (user / kernel), and various others. Normally, user programs can read the entire PSW but may only be able to write to some of them. This register plays an important role in I/O and in system calls.</p><p id="d0618416-c69f-403c-915f-979da3421883" class="">The operating system needs to be fully aware of all registers at all times. When time multiplexing the CPU, the OS will often stop one running program and start another one. Each time it stops a running program, the values of all the registers at that point in execution must be saved so they can be restored later.</p><p id="54a737b3-2a95-422b-965b-dbdd508002f8" class="">To improve performance, many CPU designs have long abandoned the simple one-at-a-time fetch-decode-execute cycle. Some CPUs, for example, may have separate units for fetching, decoding and executing, so that it can execute one instruction while decoding another and fetching a third. This sort of organisation is called a <mark class="highlight-red"><strong>pipeline</strong></mark>. A pipeline with 3 stages is illustrated below.</p><figure id="92201ae8-1612-4f80-8346-ad4a91cfaae4" class="image"><a href="Chapter%201%20%20a7335/Untitled%201.png"><img style="width:271px" src="Chapter%201%20%20a7335/Untitled%201.png"/></a></figure><p id="078bc626-0497-4147-a03f-a0d8536ebaa5" class="">Pipelines longer than three stages are common. In most pipeline designs, once an instruction has been fetched it must be executed, even if the preceding instruction was a conditional branch that was taken.</p><p id="40e1c63f-df21-413f-b5b3-2dd59c447e8d" class="">An even more advanced design than a pipeline is a <mark class="highlight-red"><strong>superscalar CPU</strong></mark>, shown below.</p><figure id="117295e0-1554-4b5a-a871-397a9d4518a6" class="image"><a href="Chapter%201%20%20a7335/Untitled%202.png"><img style="width:389px" src="Chapter%201%20%20a7335/Untitled%202.png"/></a></figure><p id="0cadf155-0fcf-436c-8108-b73789fa00e4" class="">In this design, there are multiple execution units present. One unit, for example, may be for integer arithmetic, another for floating-point arithmetic, and a third for Boolean operations. Two or more instructions may be fetched and decoded at the same time, then placed into a holding buffer until they can be executed. As soon as an execution unit becomes available it looks into the holding buffer for an instruction it can handle.</p><p id="a0e24752-2dfc-44aa-9f05-e758a0d1e774" class="">An implication of the superscalar design is that programs are often executed out of order. It is mostly up to the hardware to make sure the produced result is the same as if it were executed in order, but there is a large amount of responsibility placed on the OS too, as we will see later.</p><p id="2a015961-70e1-4a33-aa9b-f24dd1ac8fda" class="">Most CPUs, other than very simple ones in embedded systems, have two modes: <mark class="highlight-red"><strong>kernel</strong></mark> mode and <mark class="highlight-red"><strong>user </strong></mark>mode. This is usually controlled by a bit in the PSW. When running in kernel mode, the CPU can execute every instruction in its instruction set and use every feature of the hardware. On the other hand, user mode programs only allow for a subset of instructions and features to be used. Generally, instructions related to I/O and memory protection are disallowed in this mode. It is also forbidden to set the bit controlling the mode.</p><p id="00b83afb-0676-4b0c-a94c-37827ca58a54" class="">On desktops and servers, the OS usually runs in kernel mode. On embedded systems, only a small piece runs in kernel mode, with the rest of the OS running in user mode.</p><p id="70d53c55-346a-4f22-8634-e2325678efc3" class="">To obtain services from the OS, a user program must make a <mark class="highlight-red"><strong>system call</strong></mark>. The instruction handling system calls switches from user mode to kernel mode, starts the operating system, and then returns control to the user program once the necessary work has been completed. Details of this mechanism are explained later.</p><h2 id="c5226392-75fa-40cf-a58e-fa947bb49289" class="">Multithreaded and Multicore Chips</h2><p id="8246ecd8-226f-4c53-b319-89ba7801a150" class="">According to Moore’s Law, the number of transistors on a chip doubles every 18 months. Eventually, Moore’s Law will no longer hold as the number of atoms per transistors become so small that quantum mechanical effects become significant enough to prevent further transistor shrinkage.</p><p id="38d5ab82-83d0-427e-bda5-3342368d23db" class="">The sheer number of transistors is beginning to pose a problem: what do we do with them all? One approach is to produce superscalar PCs as illustrated above. </p><p id="0cb01933-1470-4b53-9f9e-16c5ef821b7c" class="">Another approach is to create larger processor registers. This is happening, but eventually we’ll have diminishing returns.</p><div id="8d505c7d-a50e-4bd8-af3f-584ef5facb66" class="column-list"><div id="95d492d2-eb75-4e33-9493-badf97bb7b0a" style="width:62.5%" class="column"><p id="46f4e573-efb6-4add-a04c-4cdcfe805850" class="">The next step is to replicate not only functional units, but some of the control logic as well. Intel’s Pentium 4 processor introduced this property, called <mark class="highlight-red"><strong>multithreading</strong></mark> or <mark class="highlight-red"><strong>hyperthreading</strong></mark>. Several other chips are multithreaded, including the SPARC, the Power5, the Intel Xeon and the Intel Core family.</p></div><div id="70118718-1302-428a-a1d8-1a61b4ad2f26" style="width:37.50000000000001%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3f530b10-e81e-405e-abfb-1782af180a79"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Each thread in a multithreaded CPU replicates some of the control logic of a CPU.</div></figure></div></div><p id="4f4ff7e5-3ad8-4fbe-9d65-f58a6c7e0d53" class="">Multithreading allows the CPU to hold the state of two or more threads and switch back and forth between them on the scale of nanoseconds. A thread is a type of lightweight process which in turn is a running program; the meaning of threads is clarified in Chapter 2. For example, if one process needs to read a word from memory, taking multiple clock cycles, multithreaded CPUs can just switch to another thread.</p><div id="cf4e6405-bcc8-4371-a9c0-f766a1050147" class="column-list"><div id="f90ecb28-1174-4365-b860-c9ceadf26b20" style="width:62.5%" class="column"><p id="5c7dcefd-affb-4b5f-bb07-1ea3303235cc" class="">Multithreading does not allow for true parallelism: only one thread runs at any one time, but it approaches something that looks like parallelism because of how little time it takes to switch between threads.</p></div><div id="7bf4f76a-d9f7-4c44-8097-2b86765ab387" style="width:37.49999999999999%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fce445f1-cbe5-4282-a148-12e471f6feed"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Multithreading does not allow for true parallelism.</div></figure></div></div><p id="eec9c19f-77fb-4699-b25a-98a330896fad" class="">To the OS, each thread is a separate CPU. If we have two physical CPUs, each of which have two threads, for example, the OS will see 4 CPUs. However, if there is only enough work to keep two CPUs busy at some point in time, it may inadvertently schedule two threads on the same CPU while the second CPU stays idle. This is far less efficient than using the two separate physical CPUs.</p><p id="90f7b361-4891-4e10-983d-7888ed921c2d" class="">Beyond multithreading, many CPU chips now have multiple <mark class="highlight-red"><strong>cores</strong></mark> on them. The below figure illustrates how a four-core CPU effectively has four different minichips on it, each of which have their own independent CPUs.</p><figure id="87613359-5416-4b1f-98f2-7e037abccf8f" class="image"><a href="Chapter%201%20%20a7335/Untitled%203.png"><img style="width:390px" src="Chapter%201%20%20a7335/Untitled%203.png"/></a></figure><p id="52dfab54-b543-45b8-9888-ade196416ded" class="">Modern GPUs are similar to multicore CPUs. However, GPUs have literally thousands of of tiny cores. This makes them good for parallel computing tasks, like drawing polygons on a screen, but are not good at serial computing. They are also difficult to program.</p><p id="589d1a01-327f-44da-801c-25be514c55c6" class="">GPUs can be useful for some OS tasks like encryption and network traffic processing, but it’s unlikely that a lot of the OS will run on the GPU.</p><h2 id="7d94342f-4393-401e-8f89-5bded2c4aae2" class="">Memory</h2><p id="90668279-6b5d-401e-b90b-e0970585958a" class="">Memory is the second major component in any computer. An idealised model of memory would be one that runs faster than the execution of any CPU instruction (so that the CPU is not held up by memory), very large, and very cheap. Unfortunately, no such technology currently exists, so a different approach is taken.</p><p id="ede9c69e-9e87-47e8-a125-86ed0c1782b5" class="">Memory is constructed as a hierarchy of different layers, shown below. The top layers have higher access speed, but smaller capacity, and greater cost per bit. The lower layers have lower access speed, but larger capacity and less cost per bit.</p><figure id="a1cd94e5-c8fe-4c2f-9d41-61c22bd1461b" class="image"><a href="Chapter%201%20%20a7335/Untitled%204.png"><img style="width:614px" src="Chapter%201%20%20a7335/Untitled%204.png"/></a></figure><h3 id="3d7f0d57-0c88-450b-8f52-2558a0ac56ef" class="">Registers</h3><p id="ab88abd9-f1c6-439a-9505-3fe49ef7a359" class="">The top layer consists of <mark class="highlight-red"><strong>registers </strong></mark>internal to the CPU. They are made of the same material as the CPU and are thus just as fast. Typically, their storage capacity is about 32 <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span></span><span>﻿</span></span> 32 bits on a 32-bit CPU, and 64 <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span></span><span>﻿</span></span> 64 bits on a 64-bit CPU. In both cases, this is less than 1KB.</p><h3 id="36782d6e-de98-4178-a6a0-69fc8fe5c46c" class="">Caches</h3><div id="605ed406-5305-4ba5-b9fc-848bb19f9827" class="column-list"><div id="fb0844c9-dc81-4f39-8977-aca7239003dc" style="width:62.5%" class="column"><p id="0a047f4a-ee33-4d1a-8c49-bdffdabec482" class="">The next layer is <strong><mark class="highlight-red">cache </mark></strong>memory. Caches are mostly controlled by the hardware. Main memory is divided into <mark class="highlight-red"><strong>cache lines</strong></mark>, typically 64 bytes each. The first cache line contains bits 0 to 63, the second contains bits 64 to 127, and so on. The most heavily-used cache lines are stored in the cache layer located inside or very close to the CPU. When the program needs to read a word from memory, cache hardware first checks whether the requested cache line is in the cache. If it is, it’s called a <mark class="highlight-red"><strong>cache hit</strong></mark>; otherwise, it’s called a <mark class="highlight-red"><strong>cache miss</strong></mark>. In the case of a cache hit, the request is satisfied and no memory request needs to be sent over the bus to main memory. They usually take about two clock cycles. Cache hits, on the other hand, have a significant time penalty.</p></div><div id="0ba7816b-80f1-4f9c-ba76-2041ff989961" style="width:37.49999999999999%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7abf2183-05ba-4ad2-b55a-b85cb9d1780b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Main memory is divided into cache lines, each typically 64 bytes long.</div></figure></div></div><p id="233df8ba-e697-4603-888e-55f2ec07589d" class="">Caching plays a major role in many areas of computer science. Whenever a resource can be divided into pieces, some of which are used more heavily than others, caching can be utilised to improve performance.</p><p id="b7bcb158-2f79-4111-af58-66620a0f5d5e" class="">In any caching system, several questions come up fairly soon, such as:</p><ul id="6577bf5d-170d-44e2-b330-43a3ccbf73ed" class="bulleted-list"><li style="list-style-type:disc">When to put a new item into cache</li></ul><ul id="b7d7815b-8586-427d-9315-8cdead9d5a85" class="bulleted-list"><li style="list-style-type:disc">Which cache line to put the new item in</li></ul><ul id="f1821910-ca76-4316-a496-50bf46b8432f" class="bulleted-list"><li style="list-style-type:disc">Which item to remove from the cache when a slot is needed</li></ul><ul id="9a6fe80d-7c9a-434f-beab-425602546a8c" class="bulleted-list"><li style="list-style-type:disc">Where to put a removed cache item in main memory</li></ul><p id="1aee8015-a8be-4ab1-9996-536e8eb4aa88" class="">However, not every question is relevant to every caching situation. For caching lines of main memory in the CPU cache, a new item usually gets inserted whenever a cache miss occurs. The used cache line is usually computed by using some of the high-order bits of the memory address referenced. Finally, when a cache line is rewritten to main memory, the place in memory to rewrite it to is uniquely determined by the address in question.</p><p id="a99bdcf0-8401-4fe8-a5a3-27b3cc2e8de7" class="">Modern CPUs have two levels of cache. The first level, called the <mark class="highlight-red"><strong>L1 cache</strong></mark>, is always inside the CPU. It usually feeds decoded instructions to the CPU’s execution engine. Most chips have an additional L1 cache for heavily-used words. L1 caches are usually 16 KB each.</p><p id="710ccc0f-f463-4182-85bc-41f768375278" class="">The second level, called the <mark class="highlight-red"><strong>L2 cache</strong></mark>, usually holds several megabytes of recently-used words.</p><p id="c13508b4-8871-4e92-a3b3-e9937bdfc901" class="">The difference between the L1 and L2 caches are in the timing. L1 caches are accessed without delay; L2 caches are accessed in one or two clock cycles.</p><p id="8e8156a9-0dd3-4a80-a47b-5414bd39a689" class="">On multicore chips, the designers need to decide where to put the caches. Sometimes, one L2 cache is shared by all the cores; this approach is used by Intel chips. In contrast, some chips have their own, smaller L2 caches for every core; this approach is used by AMD. Both approaches are shown below.</p><figure id="9c5a3aaa-73fb-45c2-85c1-c8ec780ac939" class="image"><a href="Chapter%201%20%20a7335/Untitled%205.png"><img style="width:390px" src="Chapter%201%20%20a7335/Untitled%205.png"/></a></figure><p id="0f04ce53-ed56-4c05-961e-938ebf02fe5f" class="">Each approach has its pros and cons. For example, a shared L2 cache requires a more complicated cache controller, while separate L2 caches make it difficult to keep the caches consistent.</p><h3 id="c05f5a94-0e47-4a80-ac8c-ef4b5b71fc6e" class="">Main memory</h3><p id="2445b488-54b0-42f1-b42a-7ea84300a4e1" class="">Main memory is the workhouse of the memory system. It is usually called <mark class="highlight-red"><strong>RAM</strong></mark> (random access memory). Older programmers might also call it <mark class="highlight-red"><strong>core memory</strong></mark>.</p><p id="0baf0c65-4ad5-45d4-965c-ea22f620509e" class="">Currently, main memory is many hundreds of megabytes to gigabytes large, and growing rapidly. All CPU requests that cannot be satisfied by the cache go to main memory.</p><p id="1b47aa09-f156-4a69-95b3-8c701091386d" class="">In addition to main memory, modern computers usually have a small amount of non-volatile RAM, called <mark class="highlight-red"><strong>ROM</strong></mark> (read-only memory). This kind of memory is cheap and fast, and doesn’t lose its contents when the power is switched off. It is programmed at the factory and cannot be changed afterwards. On some computers, the bootstrap loader which starts the computer is stored in ROM. Some I/O cards come with ROM for handling low-level device control.</p><p id="d7a27d08-a162-4307-a6f0-768f5cc1000f" class=""><mark class="highlight-red"><strong>EEPROM</strong></mark> (electrically erasable programmable read-only memory) and <mark class="highlight-red"><strong>flash memory</strong></mark> are other non-volatile forms of memory, but in contrast to ROM can be erased and rewritten. However, writing to these forms of memory takes much more time than RAM, so they’re used in much the same way as ROM with the additional feature of being programmable if they need to be (for example correcting bugs).</p><p id="ac770d3d-ffc2-4a8f-96a6-af0221f7ab08" class="">Flash memory is also commonly used as a storage medium in portable electronic devices. It can serve as film for digital cameras, or the disk in portable music players, for example. This form of memory is intermediate in speed between RAM and the disk. Unlike disk memory, it wears out if erased too many times.</p><p id="0c65df36-e57f-43fb-a46d-4df198124e7b" class="">Yet another kind of memory is <mark class="highlight-red"><strong>CMOS</strong></mark> (complementary metal-oxide semiconductor). CMOS is volatile. Many computers use CMOS to hold the current time and date. The CMOS memory and the clock circuit that increments the time are powered by a small battery, ensuring the time is correctly updated even when the computer is unplugged. CMOS can also hold configuration parameters, such as which disk to boot from. It is often used because it draws so little power that the original factory-installed battery often lasts several years.</p><h3 id="12efcb40-0040-40eb-b8a6-ff1c8ca18e51" class="">Disks</h3><p id="c250fecf-ec5a-4fa3-b2b0-371bc2c8c623" class="">Next in the hierarchy is the magnetic disk. Disks are many times cheaper per bit than RAM. It is usually many times larger as well. The only problem with disk memory is how long it takes to randomly access data on it. The reason is that the disk is a mechanical device. A schematic of a hard disk drive is shown below.</p><figure id="b6bdb3bf-68a7-4088-91d1-f9955472e82f" class="image"><a href="Chapter%201%20%20a7335/Untitled%206.png"><img style="width:523px" src="Chapter%201%20%20a7335/Untitled%206.png"/></a></figure><p id="5f78ac2e-f737-4eee-bd2b-ab4fa73c0ce8" class="">A hard disk drive consists of one or more metal platters that rotate at 5400, 7200, 10800, or sometimes more RPM. A mechanical arm pivots over the platters from the corner, similar to the arm on an old vinyl player. </p><p id="91a24174-da77-476a-bb8e-9a736dfb12ae" class="">Information is written onto the disk in a series of concentric circles. At any given arm position, each head can read a ring-shaped region called a <mark class="highlight-red"><strong>track</strong></mark>. All the tracks at the same radial difference from the centre, across all platters, is called the <mark class="highlight-red"><strong>cylinder</strong></mark>. Each track is divided into some number of <mark class="highlight-red"><strong>sectors</strong></mark>, typically 512 bytes each. On modern disks, the outer cylinders contain more sectors than the inner cylinders.</p><div id="08493366-b949-444c-94c6-5914c99c4f1a" class="column-list"><div id="62d7cacb-93d7-4137-8bea-158082ad9d3c" style="width:50%" class="column"><figure id="f6686ba3-21fb-4598-b37a-caf8317e1152" class="image"><a href="Chapter%201%20%20a7335/Untitled%207.png"><img style="width:336px" src="Chapter%201%20%20a7335/Untitled%207.png"/></a></figure></div><div id="76a0fcbf-9660-4b72-9c8f-a085b178f7ca" style="width:50%" class="column"><figure id="1c95a1ad-1c12-4b87-97fd-03942dc4d14c" class="image"><a href="Chapter%201%20%20a7335/Untitled%208.png"><img style="width:336px" src="Chapter%201%20%20a7335/Untitled%208.png"/></a></figure></div></div><p id="f6d14e29-84b4-4de8-9e69-3054f44f4722" class="">Moving the arm from one cylinder to the next takes about 1 millisecond. Moving onto a random cylinder takes between 5 and 10 milliseconds, depending on the drive.</p><p id="4b0f1ab3-d2d7-48e4-aa3e-fd8e72a2fd70" class="">Once the arm is on the correct track, the drive needs to wait for the the necessary sector to rotate under the head, which also takes 5-10 ms, depending on the drive’s RPM.</p><p id="5b72eb72-1b8a-47b6-82e7-6fde727c9ab1" class="">Once the sector is under the head, bits are read or written at a rate between 50 MB/s on the low end, and 160 MB/s on the high end.</p><p id="53c09c91-33d6-4065-bbc9-9bcd3913c771" class="">In recent years, <mark class="highlight-red"><strong>SSDs</strong></mark> (solid-state drives) have increasingly come to the market as disk memory. Despite their position in the memory hierarchy, SSDs are actually not disks at all. They do not have any moving parts or platters and they store data via flash memory. The main similarity between SSDs and HDDs is that SSDs can store a lot of data which isn’t lost when power is turned off. Because of the lack of moving parts, SSDs are much faster than hard drives, but their cost per bit is still much higher.</p><p id="a09b1cac-bd1f-4902-a285-4b5f89d73596" class="">Many computers support an abstraction called <mark class="highlight-red"><strong>virtual memory</strong></mark>, which will be covered in depth in Chapter 3. This scheme makes it possible to run programs larger than physical memory by placing them on the disk and using main memory as a kind of cache for the most heavily-executed parts. Virtual memory requires remapping memory addresses on the fly to convert the address the program generates to the physical address in RAM where the word is located. The mapping is done by a dedicated part of the CPU called the <mark class="highlight-red"><strong>MMU</strong></mark> (memory management unit).</p><p id="9c2e341c-0592-49d4-a087-311b659a13f7" class="">Caching and the presence of the MMU can have a major impact on performance. In a multiprogramming system, when switching from one program to another (sometimes called a <mark class="highlight-red"><strong>context switch</strong></mark>), it may be necessary to flush modified blocks from the cache and change the mapping registers on the MMU. Both are expensive operations, and so it’s important for programmers to avoid them wherever possible. Some implications of this avoidance is covered later.</p><h2 id="de2bcef5-4d62-4482-a9c4-de5111053308" class="">I/O Devices</h2><p id="e6c33a63-6cdb-4059-9670-e58357f22e10" class="">The CPU and memory are not the only resources managed by the OS. I/O devices also interact heavily with the OS.</p><p id="75073d31-2e52-4517-ba8d-b1f44528fbac" class="">I/O devices generally consist of two parts: a <mark class="highlight-red"><strong>controller</strong></mark>, and the <mark class="highlight-red"><strong>device</strong></mark> itself.</p><p id="1c33b299-0ba8-4118-975b-2953a43ae2fe" class="">The controller is a chip or a set of chips that physically controls the device. It accepts commands from the OS to, for example, read data from the device, and carries the commands out. In many cases, the actual control of the device is very complex and detailed, so the job of the controller is to present a simpler, albeit still complicated, interface to the operating system. For example, a disk controller might accept a command to read sector 11206 from disk 2. The controller would then convert this linear sector number to a cylinder, sector and head. The conversion may be complicated by the fact that outer cylinders have more sectors than inner ones, or that some bad sectors have been remapped onto other ones, for example. Then, the controller has to determine which cylinder the disk arm is on and give it a command to move in or out the necessary number of cylinders. It would have to wait until the proper sector has rotated under the head and then start reading and storing the bits as they come off the drive, removing preamble and computing checksum. Finally, it has to assemble bits into words and store them in memory. To do all this work, controllers often contain small embedded computers that are programmed to do the work for them.</p><p id="66c93ce1-d257-45a4-ab78-f038f3acdfad" class="">The device itself usually has a comparatively simple interface, both because they don’t do much and so they can be standardised. Standards are needed so that any SATA controller can handle any SATA disk, for example.</p><p id="f4177157-3617-463a-bf65-46462fc2a377" class=""><mark class="highlight-red"><strong>SATA</strong></mark> (Serial AT Attachment) is currently the standard type of disk on many computers. Since the actual device is hidden behind the controller, all the OS sees is the interface to the controller; this may be significantly different than the controller’s interface to the device.</p><p id="a41de0b0-5001-402e-8ca8-3abde49646cb" class="">Because each type of controller is different, different software is needed to control each one. The software that talks to a controller, giving commands and accepting responses, is called the <mark class="highlight-red"><strong>device driver</strong></mark>. Each controller manufacturer has to supply a driver for each operating system it supports. A scanner, for example, may come with drivers for OS X, Windows 7, Windows 8, Windows 10 and Linux.</p><p id="a598a139-a070-4a44-8eb6-cf283baa42be" class="">To be used, the driver has to be put into the OS so it can run in kernel mode. It is possible for drivers to run outside kernel mode, and modern Windows and Linux OSes provide some support for this, but the vast majority of drivers still run in kernel mode. Very few current systems run all drivers in userspace. When they are run in userspace, drivers must be allowed to access the device in a controlled way, which is not straightforward.</p><p id="49b5c114-ebf4-4afd-9b89-b0e61a28f95c" class="">The driver can be put into kernel space in 3 ways:</p><ul id="6d43cc0b-884e-48e0-b466-3bda76b7f4b0" class="bulleted-list"><li style="list-style-type:disc">relink the kernel with the new driver and restart the system<ul id="ebeaf376-748c-4c22-a95d-0b934b354d6b" class="bulleted-list"><li style="list-style-type:circle">This is an older technique, used by some old UNIX systems</li></ul></li></ul><ul id="2dc9e155-52b1-4c41-9d8b-13e76eb3ecb8" class="bulleted-list"><li style="list-style-type:disc">make an entry in an OS file telling it that it needs the driver, and then restart the system<ul id="616ef38c-7f00-4c54-9014-d8fd320b5633" class="bulleted-list"><li style="list-style-type:circle">Windows works this way</li></ul><ul id="4fcaed24-f530-4356-a6c3-c0752f60da50" class="bulleted-list"><li style="list-style-type:circle">At boot time, the OS finds the drivers it needs and then loads them</li></ul></li></ul><ul id="9e8a5522-a64a-4d59-8088-fd76559d25a0" class="bulleted-list"><li style="list-style-type:disc">Have an OS capable of accepting new drivers while running, and install them on the fly without a need to reboot<ul id="69594f92-5c5b-4633-aee7-1278c48d258c" class="bulleted-list"><li style="list-style-type:circle">Used to be quite rare, but is becoming much more common</li></ul><ul id="e1f976d4-b873-4bd5-8ed0-3d88310574dd" class="bulleted-list"><li style="list-style-type:circle">Hot-pluggable devices such as USBs and IEEE 1394 devices always require dynamically-loaded drivers</li></ul></li></ul><p id="8728bc13-6dd2-4521-b8af-5fb8d4f18018" class="">Each controller has a small number of registers that are used to communicate with it. For example, a minimal disk controller might have registers for specifying the disk address, memory address, sector count, and direction (read/write). To activate this controller, the driver gets a command from the OS, then translates it into the appropriate values to write into device registers.</p><p id="29f5c49d-e031-42aa-81a4-1e0b51d6cb69" class="">The collection of all the device registers forms the <mark class="highlight-red"><strong>I/O port space</strong></mark>, which will be covered in Chapter 5.</p><hr id="1167443f-bda5-4d83-bcfc-91a75af66b4c"/><div id="c699a1db-d92c-4914-8b98-9202c04386c2" class="column-list"><div id="77e7f318-6735-4a1f-bdb4-cdb581232ada" style="width:50%" class="column"><p id="dbbafdde-e511-45b2-a3c2-f1930f067570" class=""><a href="Chapter%201%20%20984da.html">← Chapter 1.2</a></p></div><div id="0c758f64-36df-48b8-b0c8-40a1d691d232" style="width:9.375%" class="column"><p id="4c6ecc3e-5791-4624-b74c-901bce72db17" class=""><a href="../../AiredDev%20b02d5/Notes%20on%20M%2061e3e.html">Home</a></p></div><div id="102d04fb-617e-429a-9455-a2564ea3b436" style="width:21.875%" class="column"><p id="55c1d8e9-1292-452a-9e87-61b3108eb863" class="">
+</p></div><div id="ee2216f2-622f-4d33-b1bc-187299d4a529" style="width:18.749999999999993%" class="column"><p id="6c390c2f-d766-4514-9bef-347ca2745b7b" class=""><a href="Chapter%201%20%2077857.html">Chapter 1.4 →</a></p></div></div></div></article></body></html>
