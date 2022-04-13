@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Notes on Modern Operating Systems, 4th Ed.</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="61e3e88c-dd9a-4fd8-9d4a-2597b8372600" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_1.jpg" style="object-position:center 63.55%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💻</span></div><h1 class="page-title">Notes on Modern Operating Systems, 4th Ed.</h1></header><div class="page-body"><div id="c7798042-b86b-4bbd-9738-bdf932220f6e" class="column-list"><div id="343dc712-a85e-49ca-8af5-48f55ee72d44" style="width:50%" class="column"><h2 id="575b204c-aeab-4439-b36c-e6aa91c93f47" class="">Chapters</h2></div><div id="52e0da0b-a39e-451f-8b14-53e1c97c424f" style="width:50%" class="column"><h2 id="5cf92750-e102-421b-8850-0f09f8030d35" class="">Appendices</h2></div></div><hr id="c46fab40-092b-4b3b-8b24-6802c2d9cc2f"/><div id="11132dc2-d00c-419d-ae5c-f72ba586a33b" class="column-list"><div id="b7b5223c-138e-4dca-aa6d-8c54b7accc14" style="width:50%" class="column"><ul id="b5529d1f-2743-4307-a36f-2a08ac1fd3ee" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20a48da.html"><span class="icon">👋</span>Chapter 1: Introduction</a>  </summary><p id="189b8b67-39fd-40a6-8b48-f3af4592315e" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%207407e.html"><span class="icon">❓</span>Chapter 1.1: What is an Operating System?</a>  </p><p id="4574b816-50ea-4406-824f-d93674c202a0" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20984da.html"><span class="icon">👩‍🏫</span>Chapter 1.2 History of Operating Systems</a> </p><p id="7c3b7def-0d43-4002-8746-c431ab87c79b" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20a7335.html"><span class="icon">🔌</span>Chapter 1.3: Computer Hardware Review</a> </p><p id="b7aaeb69-f39f-467e-b675-524f60842099" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%2077857.html"><span class="icon">🐘</span>Chapter 1.4 The Operating System Zoo</a> </p><p id="91288308-d810-4f15-9376-2ef487205acb" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%205fcb9.html"><span class="icon">🧩</span>Chapter 1.5: Operating System Concepts</a> </p><p id="5758ce16-79c6-4f25-9753-0a847cee2884" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%2049b8e.html"><span class="icon">📞</span>Chapter 1.6: System Calls</a> </p><p id="c76fd603-287b-493d-85c6-2e466f7cad82" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%207b67e.html"><span class="icon">🧱</span>Chapter 1.7: Operating System Structure</a> </p><p id="b9b4b0f4-f2cd-4893-b43e-b50ef2b6e569" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20681a7.html"><span class="icon">🌍</span>Chapter 1.8: The World According to C</a> </p><p id="641f20a0-087a-4555-837b-ed2f3fd45296" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20fa326.html"><span class="icon">📄</span>Chapter 1.9: Research on Operating Systems</a> </p><p id="4bf93e00-3f0e-4d05-b982-afa587ee4949" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20b519b.html"><span class="icon">🗒️</span>Chapter 1.10: Outline of the Rest of the Book</a>  </p><p id="0ad0577d-2c98-467a-9240-ed53591e26f8" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20562e8.html"><span class="icon">ℹ️</span>Chapter 1.11: Metric Units</a> </p><p id="abb6e924-127f-4ee3-9501-c25d22c173d4" class=""><a href="../MOS-Conten%209cf5f/Chapter%201%200f0eb/Chapter%201%20%20de40c.html"><span class="icon">❗</span>Chapter 1.12: Summary</a> </p></details></li></ul><ul id="6eb71f01-fc98-4b50-bee2-e65f79c64221" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%203cc15.html"><span class="icon">🪡</span>Chapter 2: Processes and Threads</a> </summary><p id="39896eba-e8bb-4640-b5ca-fc568af62c83" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%20b6b41.html"><span class="icon">⏳</span>Chapter 2.1: Processes</a> </p><p id="fdb450a9-3873-450e-8ff8-45d0d38081ca" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%20db60c.html"><span class="icon">🧵</span>Chapter 2.2: Threads</a> </p><p id="25fff0bb-e6c6-4938-bac7-5a03483f4ef5" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%2024b7e.html"><span class="icon">🗣️</span>Chapter 2.3: Interprocess Communication</a> </p><p id="8bf4280d-41eb-4ec5-8135-afbc2b5a54da" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%2099820.html"><span class="icon">🗓️</span>Chapter 2.4: Scheduling</a> </p><p id="5d772a05-9765-41d8-91dd-d220a6e31ed5" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%207bc7a.html"><span class="icon">😵‍💫</span>Chapter 2.5: Classic IPC Problems</a> </p><p id="7649cd5d-e0c1-431b-952b-dbb7e4f8de19" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%206080d.html"><span class="icon">📄</span>Chapter 2.6: Research on Processes and Threads</a> </p><p id="ba46b982-8cda-454f-9259-ec66116879f7" class=""><a href="../MOS-Conten%209cf5f/Chapter%202%20fc6e6/Chapter%202%20%204a868.html"><span class="icon">❗</span>Chapter 2.7: Summary</a> </p></details></li></ul><ul id="9ee2981e-75e6-4363-b692-bc1e0632d937" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%201d3d3.html"><span class="icon">💾</span>Chapter 3: Memory Management</a> </summary><p id="00d2d602-343a-4f46-99ec-b33cb97c4876" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%2050ff9.html"><span class="icon">❌</span>Chapter 3.1: No Memory Abstraction</a> </p><p id="25414ed2-0e30-482d-9fef-48142fd37753" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%201e90d.html"><span class="icon">🤏</span>Chapter 3.2: A Memory Abstraction: Address Spaces</a> </p><p id="4dd10033-d40e-484e-b48f-c4215d261f59" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%2062758.html"><span class="icon">👌</span>Chapter 3.3: Virtual Memory</a> </p><p id="51481023-46a8-4eef-abd7-290f4c4f04ef" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%203d017.html"><span class="icon">📃</span>Chapter 3.4: Page Replacement Algorithms</a> </p><p id="b2864319-b9fc-49fd-a96f-b51ecf652226" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%2081914.html"><span class="icon">🥲</span>Chapter 3.5: Design Issues for Paging Systems</a> </p><p id="4ebb370c-fd9a-41cd-afb5-6f670561ba13" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%2050f54.html"><span class="icon">🙃</span>Chapter 3.6: Implementation Issues</a> </p><p id="f6fb8cf3-d957-4528-be20-33ce214a939b" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%20b8a40.html"><span class="icon">😲</span>Chapter 3.7: Segmentation</a> </p><p id="3e46235e-1ceb-42b8-b398-011608225cee" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%20b214f.html"><span class="icon">📄</span>Chapter 3.8: Research on Memory Management</a> </p><p id="b8151345-07c1-47a1-a5ac-8442daa1ba5d" class=""><a href="../MOS-Conten%209cf5f/Chapter%203%20a2f24/Chapter%203%20%20317e9.html"><span class="icon">❗</span>Chapter 3.9: Summary</a> </p></details></li></ul><ul id="71470a25-6bd8-4007-b382-9ccaab46944d" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%20b4031.html"><span class="icon">📂</span>Chapter 4: File Systems</a> </summary><p id="d88605bf-ce7f-4330-9871-32d9a164d2a3" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%20f522b.html"><span class="icon">🗃️</span>Chapter 4.1: Files</a> </p><p id="e1b90f87-0b2f-4ead-a5fe-8e81f7eefcf9" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%2072bde.html"><span class="icon">📁</span>Chapter 4.2: Directories</a> </p><p id="2c7fc585-9d1b-4cf6-9ff2-4da91f133666" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%20ff5ee.html"><span class="icon">😵‍💫</span>Chapter 4.3: Filesystem Implementation</a> </p><p id="5d12c944-6b38-414a-bd60-9bd55a34f7f3" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%2018c6d.html"><span class="icon">⏩</span>Chapter 4.4: Filesystem Management and Optimization</a> </p><p id="392803bf-6c9c-4353-b1af-7538022edce5" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%208f265.html"><span class="icon">🧑‍🏫</span>Chapter 4.5: Example Filesystems</a> </p><p id="843736f1-3e84-4acd-b9f3-2e894eec31a0" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%20351e9.html"><span class="icon">📄</span>Chapter 4.6: Research on Filesystems</a> </p><p id="a6188491-4dfc-463a-96c9-9dda3c0d896f" class=""><a href="../MOS-Conten%209cf5f/Chapter%204%201e8b5/Chapter%204%20%20b14ff.html"><span class="icon">❗</span>Chapter 4.7: Summary</a> </p></details></li></ul><ul id="3c6a031a-289f-493b-9edd-6d750b9bf7b7" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2038221.html"><span class="icon">🖱️</span>Chapter 5: Input / Output</a> </summary><p id="c71b0148-8c4b-48bb-8184-2216abcb49ba" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%20a120b.html"><span class="icon">☝️</span>Chapter 5.1: Principles of I/O Hardware</a> </p><p id="5dba19f4-4c29-4fc0-9b8c-7bea96a60475" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%20758e8.html"><span class="icon">✌️</span>Chapter 5.2: Principles of I/O Software</a> </p><p id="c135a5ee-6869-4e92-9be0-29621755aedd" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2016831.html"><span class="icon">🧅</span>Chapter 5.3: I/O Software Layers</a> </p><p id="6e4ed011-0d76-404a-b66c-0eb7f83e56bf" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%206a3db.html"><span class="icon">💿</span>Chapter 5.4: Disks</a> </p><p id="fabf0e98-9b3b-4dd1-b6f5-ae6699a26882" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2050107.html"><span class="icon">⏲️</span>Chapter 5.5: Clocks</a> </p><p id="897b373d-2fa2-4fc4-a66f-c1e621ec2e3c" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2000143.html"><span class="icon">🖥️</span>Chapter 5.6: User Interfaces: Keyboard, Mouse, Monitor</a> </p><p id="50948bd5-a37a-4fdb-870c-5064ff0a1422" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%20edf5d.html"><span class="icon">↔️</span>Chapter 5.7: Thin Clients</a> </p><p id="bb76afbe-baea-490b-8c45-fc4b06463d75" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2034fe2.html"><span class="icon">🔋</span>Chapter 5.8: Power Management</a> </p><p id="72ad358a-d7b5-48f5-ae0d-6df58567bebb" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%2019119.html"><span class="icon">📄</span>Chapter 5.9: Research on Input / Output</a> </p><p id="b9ff9c1d-8cce-4ae4-a269-97d981683cc9" class=""><a href="../MOS-Conten%209cf5f/Chapter%205%200aea9/Chapter%205%20%202f668.html"><span class="icon">❗</span>Chapter 5.10: Summary</a> </p></details></li></ul><ul id="6b090ed9-129b-476f-8a46-72dd8b51a2d9" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%20dbcb9.html"><span class="icon">⛔</span>Chapter 6: Deadlocks</a> </summary><p id="a23fe5c1-b763-4e90-810c-2a524a1bc9ba" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%2033d7f.html"><span class="icon">🎛️</span>Chapter 6.1: Resources</a> </p><p id="9637698d-1f0c-485a-8ca1-33b37c27690b" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%2087825.html"><span class="icon">💀</span>Chapter 6.2: Introduction to Deadlocks</a> </p><p id="dfcfcebf-39a7-45d5-bdb6-99c7ac5b7e57" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%2058fff.html"><span class="icon">🥚</span>Chapter 6.3: The Ostrich Algorithm</a> </p><p id="d90c2617-c7c9-4e57-b046-ba30326cb8d6" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%20e7f89.html"><span class="icon">👁️‍🗨️</span>Chapter 6.4: Deadlock Detection and Recovery</a> </p><p id="6de8ee55-1dd7-45c6-9885-43643e6088fb" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%203a4c5.html"><span class="icon">💫</span>Chapter 6.5: Deadlock Avoidance</a> </p><p id="5b1bab08-ae97-4a5c-8ad1-81b09b5ec997" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%20ea346.html"><span class="icon">👌</span>Chapter 6.6: Deadlock Prevention</a>  </p><p id="7f0b536e-86d3-48f7-8e1c-b50788f730fa" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%20b740f.html"><span class="icon">💥</span>Chapter 6.7: Other Issues</a> </p><p id="12d0361a-d74b-4f40-a9fb-8728d0ecfa01" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%20d5540.html"><span class="icon">📄</span>Chapter 6.8: Research on Deadlocks</a> </p><p id="296e83df-4ca9-4503-b542-523c4ecfca19" class=""><a href="../MOS-Conten%209cf5f/Chapter%206%2012c11/Chapter%206%20%209ec33.html"><span class="icon">❗</span>Chapter 6.9: Summary</a> </p></details></li></ul><ul id="81d45bc7-aaa4-4dc7-ab5c-8387af84bc30" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20bb714.html"><span class="icon">☁️</span>Chapter 7: Virtualization and the Cloud</a> </summary><p id="f51b2a76-961e-4f9b-946d-ad6ba038df7c" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%202a874.html"><span class="icon">🧑‍🏫</span>Chapter 7.1: History</a> </p><p id="b6f9118a-f488-4742-90a4-182934542e95" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%2030f98.html"><span class="icon">☝️</span>Chapter 7.2: Requirements for Virtualization</a> </p><p id="9fc452de-8f90-4973-8a1d-9835e99bd5fe" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20929a4.html"><span class="icon">🕶️</span>Chapter 7.3: Type 1 and Type 2 Hypervisors</a> </p><p id="3d685e80-12a8-4626-bd6e-7c4cc7cc5ea5" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%207dff4.html"><span class="icon">💨</span>Chapter 7.4: Techniques for Efficient Virtualization</a> </p><p id="e0d73416-a14d-4c36-afca-ae5523df685b" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20b0fd7.html"><span class="icon">🤔</span>Chapter 7.5: Are Hypervisors Microkernels Done Right?</a> </p><p id="5f691b8c-f1c6-4624-8b38-0238edb77e60" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20dc9a6.html"><span class="icon">💾</span>Chapter 7.6: Memory Virtualization</a> </p><p id="b99d21e6-3844-4ae3-8ee0-0323cbe18346" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%2030af3.html"><span class="icon">🖱️</span>Chapter 7.7: I/O Virtualization</a> </p><p id="ca24fa5c-bcb6-4f87-9e1c-7e8b33cedeb1" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20bfd0a.html"><span class="icon">🪆</span>Chapter 7.8: Virtual Appliances</a>  </p><p id="6b657153-62e9-46cc-8a3e-eafc6fa5a9f6" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20e58a8.html"><span class="icon">🪢</span>Chapter 7.9: Virtual Machines on Multicore CPUs</a> </p><p id="ea8ab116-f175-4b11-b763-7d40e28dd30e" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20c1851.html"><span class="icon">📜</span>Chapter 7.10: Licensing Issues</a> </p><p id="db63b06e-f28e-4411-9ec2-a83ead4d809d" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%2028158.html"><span class="icon">⛅</span>Chapter 7.11: Clouds</a> </p><p id="d7e10a00-696b-47d3-a4b2-35e4005cf12c" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%20b47d4.html"><span class="icon">🔎</span>Chapter 7.12: Case Study: VMWare</a> </p><p id="300dd0f7-a0e5-448a-92e7-91ce6dc0fd00" class=""><a href="../MOS-Conten%209cf5f/Chapter%207%2019836/Chapter%207%20%200f26a.html"><span class="icon">📄</span>Chapter 7.13: Research on Virtualization and the Cloud</a> </p></details></li></ul><ul id="d5e7c43a-10b9-4146-8636-c81535255b82" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%20f1b98.html"><span class="icon">🔗</span>Chapter 8: Multiple Processor Systems</a> </summary><p id="c6f4b049-8bf4-4c85-94da-68923a20a171" class=""><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%208cd46.html"><span class="icon">👯‍♂️</span>Chapter 8.1: Multiprocessors</a> </p><p id="4191c0dc-930f-47dd-9e61-56841416c92b" class=""><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%20ab942.html"><span class="icon">🧑‍🤝‍🧑</span>Chapter 8.2: Multicomputers</a>  </p><p id="ced7e323-acf2-42f5-a796-23512a0ffbfd" class=""><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%20e8f69.html"><span class="icon">👩‍👩‍👧‍👦</span>Chapter 8.3: Distributed Systems</a> </p><p id="5ed6dbc0-1734-4b42-b833-01686e5aff02" class=""><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%20d7dbc.html"><span class="icon">📄</span>Chapter 8.4: Research on Multiple Processor Systems</a> </p><p id="7c5e154b-3def-4e17-b212-7c9b9f4cf2e3" class=""><a href="../MOS-Conten%209cf5f/Chapter%208%20ecc63/Chapter%208%20%2014bd7.html"><span class="icon">❗</span>Chapter 8.5: Summary</a> </p></details></li></ul><ul id="1119e9db-2318-444a-b94f-3a86240d34fc" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20b617e.html"><span class="icon">🕵️</span>Chapter 9: Security</a> </summary><p id="837bfe3a-2f70-405f-8a57-e657c454a22b" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%204a928.html"><span class="icon">🏞️</span>Chapter 9.1: The Security Environment</a> </p><p id="c8149c15-3c18-413f-8ea1-5dd9571880cd" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20e75c5.html"><span class="icon">🤺</span>Chapter 9.2: Operating Systems Security</a> </p><p id="bf0bd6d0-7885-4346-918c-3e738d6affbc" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20d916e.html"><span class="icon">⛔</span>Chapter 9.3: Controlling Access to Resources</a> </p><p id="c530e823-d6ea-4989-a5be-0a3def6b8287" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20fae7c.html"><span class="icon">📌</span>Chapter 9.4: Formal Models of Security Systems</a> </p><p id="f1f232b4-c940-49b9-9bab-7da7212c8760" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%209cb26.html"><span class="icon">🔐</span>Chapter 9.5: Basics of Cryptography</a> </p><p id="aa6af6f5-2b71-47aa-9725-3239b9fc7276" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%2022502.html"><span class="icon">🆔</span>Chapter 9.6: Authentication</a> </p><p id="93484538-ae5e-49c9-81ea-d1f2c898c7ec" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%203c0d9.html"><span class="icon">💥</span>Chapter 9.7: Exploiting Software</a> </p><p id="15ce061f-0e6b-4768-a227-73bc66c45f78" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%203e02d.html"><span class="icon">👤</span>Chapter 9.8: Insider Attacks</a> </p><p id="334d216c-3766-42af-a09d-c18ec7cbc630" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20ea066.html"><span class="icon">🪱</span>Chapter 9.9: Malware</a> </p><p id="a5186a58-cc05-42c0-b43e-86325d38833f" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%203b3c5.html"><span class="icon">🛡️</span>Chapter 9.10: Defenses</a> </p><p id="3cd208b4-e6b4-4687-a981-4a6b7b393351" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%20e822d.html"><span class="icon">📄</span>Chapter 9.11: Research on Security</a> </p><p id="035fed11-34ea-4e31-a129-4e51abe4f381" class=""><a href="../MOS-Conten%209cf5f/Chapter%209%20f16a6/Chapter%209%20%2007175.html"><span class="icon">❗</span>Chapter 9.12: Summary</a> </p></details></li></ul><ul id="0017a95d-ce1a-4c7c-84bd-2a5143b596fb" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%20a1e22.html"><span class="icon">🤖</span>Chapter 10: Case Study 1: Unix, Linux and Android</a> </summary><p id="afc218aa-2d96-494b-a5fe-7a82770b9ef4" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%2036df2.html"><span class="icon">👩‍🏫</span>Chapter 10.1: History of Unix and Linux</a> </p><p id="da3d11f0-b158-4c73-b436-8601bc783332" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%20f51dc.html"><span class="icon">🐧</span>Chapter 10.2: Overview of Linux</a> </p><p id="f6d13d6a-4f75-4ca4-94bb-ae428d7ccfaf" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%208a95a.html"><span class="icon">🦯</span>Chapter 10.3: Processes in Linux</a> </p><p id="1ea21e83-f352-4603-88bc-d86feaf1a168" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%203f123.html"><span class="icon">🧠</span>Chapter 10.4: Memory Management in Linux</a> </p><p id="11c2ee5c-1ba0-47fb-a06c-7e20b779b721" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%20ec187.html"><span class="icon">🎛️</span>Chapter 10.5: I/O in Linux</a> </p><p id="31cde19b-ffe9-40d7-8707-217163b153e3" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%202c8a7.html"><span class="icon">📂</span>Chapter 10.6: The Linux File System</a> </p><p id="d84c1ecc-5cb7-40e5-ac2e-06d454870be0" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%20bc9bc.html"><span class="icon">🕵️‍♂️</span>Chapter 10.7: Security in Linux</a> </p><p id="5d2ee800-84a0-41d8-82bb-0df81d5e57d5" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%2063f6b.html"><span class="icon">📱</span>Chapter 10.8: Android</a> </p><p id="4f25d9e7-aef2-4940-99e6-3f4ec3997c12" class=""><a href="../MOS-Conten%209cf5f/Chapter%2010%20b0d9e/Chapter%2010%2041721.html"><span class="icon">❗</span>Chapter 10.9: Summary</a> </p></details></li></ul><ul id="9ffd0ed8-de75-4a9e-a22e-f377d1d5b8cb" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%20e808b.html"><span class="icon">8️⃣</span>Chapter 11: Case Study 2: Windows 8</a> </summary><p id="d7b35a31-2679-4b13-bfe8-f647d3bca4e5" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%206395d.html"><span class="icon">👩‍🏫</span>Chapter 11.1: History of Windows Through Windows 8.1</a> </p><p id="7eeba3dd-849b-4d2b-912b-f8de3275144c" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%206143c.html"><span class="icon">👨‍💻</span>Chapter 11.2: Programming Windows</a> </p><p id="85307fb5-717e-4fbd-a27c-f6d3d1125670" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%2065e38.html"><span class="icon">👷</span>Chapter 11.3: System Structure</a> </p><p id="bbcf3062-04fe-4333-b814-b79ef97c80e6" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%208aab7.html"><span class="icon">🪡</span>Chapter 11.4: Processes and Threads in Windows</a> </p><p id="a88cb406-0c2b-4d09-b670-ab41d55a8650" class=""> <a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%20054de.html"><span class="icon">🧠</span>Chapter 11.5: Memory Management</a> </p><p id="55d3e7de-bfed-4cf8-b255-f4dc250417f5" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%2018db6.html"><span class="icon">💨</span>Chapter 11.6: Caching in Windows</a>  </p><p id="b4901224-f9d8-4aca-b212-f6550f0f8252" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%203d3a7.html"><span class="icon">🎛️</span>Chapter 11.7: I/O in Windows</a> </p><p id="2bda3886-4828-4556-ae00-48e4c2e94ada" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%20133d4.html"><span class="icon">📂</span>Chapter 11.8: The Windows NT File System</a> </p><p id="92befc0f-6e14-4cdf-978d-1975ca281dd0" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%207d501.html"><span class="icon">🔋</span>Chapter 11.9: Windows Power Management</a> </p><p id="4091cf3f-6d7a-4764-9e95-d518ef693094" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%2070499.html"><span class="icon">🕵️‍♀️</span>Chapter 11.10: Security in Windows 8</a> </p><p id="04c17b12-01a9-4aef-9af0-1b4cb5fafe05" class=""><a href="../MOS-Conten%209cf5f/Chapter%2011%20f3eab/Chapter%2011%20e4bf4.html"><span class="icon">❗</span>Chapter 11.11: Summary</a> </p></details></li></ul><ul id="53184c54-bd49-4b3f-a629-173fef821e41" class="toggle"><li><details open=""><summary><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%20ba4c8.html"><span class="icon">🎨</span>Chapter 12: Operating System Design</a> </summary><p id="c795181d-0610-4b66-bb36-1a950881a5c9" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%201acb8.html"><span class="icon">🤔</span>Chapter 12.1: The Nature of the Design Problem</a> </p><p id="2e29e45c-44af-425d-82c6-cc827f7dd1d6" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%20b04c6.html"><span class="icon">🖼️</span>Chapter 12.2: Interface Design</a> </p><p id="14e2e5b4-2733-4914-9364-d4107d5cc34c" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%2078449.html"><span class="icon">⛳</span>Chapter 12.3: Implementation</a> </p><p id="e12a395c-1cc0-4411-970f-135b77fdd0ab" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%20ae26a.html"><span class="icon">💨</span>Chapter 12.4: Performance</a> </p><p id="0434ac9d-f6d0-4cf5-adda-4c94af62218f" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%20395a2.html"><span class="icon">📊</span>Chapter 12.5: Project Management</a> </p><p id="36d2acf3-6c56-4268-bbf0-dd479e7abd0c" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%20f2d06.html"><span class="icon">📈</span>Chapter 12.6: Trends in Operating System Design</a> </p><p id="3c54ee13-3777-4300-9c04-5c2c0f501e9b" class=""><a href="../MOS-Conten%209cf5f/Chapter%2012%20c49da/Chapter%2012%2065e1d.html"><span class="icon">❗</span>Chapter 12.7: Summary</a> </p></details></li></ul></div><div id="b8e6187e-c86f-4d6c-bb9f-32134e705877" style="width:50%" class="column"><p id="0c1deebe-dc65-42e2-b006-9c1489fc8e9d" class="">
+</p></div></div></div></article></body></html>
